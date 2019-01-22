@@ -136,8 +136,6 @@ def get_coefs(d):
 	for i in range(len(b)):
 		b[i] = comb(d, i, exact=True)
 
-	print(b)
-
 	# fill a
 	for r in range(d+2):
 		# c choose r
@@ -147,79 +145,13 @@ def get_coefs(d):
 	A = A[:-1,1:]
 	b = b[:-1]
 
+	print(A)
+
 	# solve system
 	x = np.linalg.solve(A,b)
 	x1 = np.zeros(shape=(len(x)+1,))
 	x1[1:,] = x
 	x = x1
-
-	return np.poly1d(x[::-1])
-
-
-def get_A(d):
-
-	A = np.zeros(shape=(d+2, d+2))
-
-	# first row comes from constraint (1) 
-	A[0,:] = np.ones(shape=(d+2))
-
-	# remaining rows come from constraint (2) equations
-	# however a more efficient method can be used to fill the matrix
-
-	# row 1 has a leading 0 then trailing 1's
-	A[1,1:] = np.ones(shape=(d+1))
-
-	# the diagnol elements are sums of the previous colums
-	# 2 elements, one on the same row and one on the previous row
-
-	# the main diagnol is filled with 1, 2, ..., d+2
-	for i in range(2, d+2):
-		A[i,i] = i
-
-	# fill the remaining elements row by row
-	for r in range(2, d+2):
-		for c in range(r+1, d+2):
-			A[r,c] = A[r-1,c-1] + A[r,c-1]
-
-
-	return A
-
-
-import math
-def get_b(d):
-
-	b = np.zeros(shape=(d+1,))
-
-	d_factorial = math.factorial(d)
-	i_factorial = 1
-
-	b[0] = 1
-	for i in range(1,d+1):
-
-		# d choose i
-		i_factorial *= i
-
-		b[i] = d_factorial/i_factorial/math.factorial(d-i)
-
-	v = np.ones(shape=(d+2,))
-	v[1:] = b
-	
-	return v
-
-
-def get_p(d):
-
-	A = get_A(d)
-	b = get_b(d)
-
-	print(A)
-	print(b)
-
-	# solve system
-	x = np.linalg.solve(A,b)
-
-	#print(x)
-
 
 	return np.poly1d(x[::-1])
 
@@ -231,13 +163,6 @@ def get_p(d):
 
 if __name__ == "__main__":
 
-	#get_A(6)
-	#get_b(6)
-	#get_coefs(6)
-
-
-
-	
 
 	# Settings -- Check until q_d(n), for n=1,2,...,MAX_N
 	MAX_D = 5
@@ -250,18 +175,16 @@ if __name__ == "__main__":
 	C = compute_C(MAX_D)
 
 	# check against known formula 
-	for d in range( MAX_D+1):
+	for d in range(MAX_D, MAX_D+1):
 
 		# compute actual values using known formula
 		actual = q(ns, d=d)
 
 		# compute values using derived polynomials
 		#p = get_pd(d,C)
-		#p =  get_coefs(d)
-		p = get_p(d)
-		derived = p(ns)
 
-		print(p)
+		p =  get_coefs(d)
+		derived = p(ns)
 
 		# compute the total error
 		error = abs(np.sum(np.array(actual-derived)))
@@ -270,8 +193,4 @@ if __name__ == "__main__":
 		#print("Known forumla results: ", actual)
 		#print("Derived formula results: ", derived)
 		print("Total Error: ", error)
-
-
-
-
 
