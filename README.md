@@ -20,6 +20,8 @@ and recursively generated polynomials
 
 ![Kinda Divided Differences](https://github.com/browlm13/polynomial_sums/blob/master/Screen%20Shot%202019-01-23%20at%202.03.48%20AM.png)
 
+![Kinda Divided Differences](https://github.com/browlm13/polynomial_sums/blob/master/Screen%20Shot%202019-01-23%20at%202.14.42%20AM.png)
+
 
 ![Kinda Divided Differences](https://github.com/browlm13/polynomial_sums/blob/master/Screen%20Shot%202019-01-23%20at%202.04.11%20AM.png)
 
