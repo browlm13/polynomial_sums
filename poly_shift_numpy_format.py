@@ -80,8 +80,9 @@ def poly_horizontal_translation(p, delta_x):
 #
 
 def poly_vertical_translation(poly, delta_y):
-    poly += delta_y
-    return poly 
+    # r(x) = p(x) + delta_y
+    r = poly + delta_y
+    return r 
 
 
 #
@@ -121,3 +122,4 @@ r = translate_polynomial(p, delta_y=y_shift)
 
 # plot results
 plot_polys([p, q, r], a=-3, b=3)
+
