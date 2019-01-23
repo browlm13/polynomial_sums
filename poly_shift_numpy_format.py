@@ -109,7 +109,7 @@ def translate_polynomial(p, delta_x=0, delta_y=0):
 # SETTINGS
 MIN_DEGREE = 2
 MAX_DEGREE = 5
-SHIFT_RANGE = 3 # MAX
+SHIFT_RANGE = 2 # MAX
 
 # generate random base polynomial
 n = random.randint(MIN_DEGREE,MAX_DEGREE)
@@ -117,9 +117,8 @@ p = np.poly1d( np.random.randn(n))
 
 # translate base polynomial
 x_shift, y_shift = random.randint(-SHIFT_RANGE,SHIFT_RANGE), random.randint(-SHIFT_RANGE,SHIFT_RANGE)
-q = translate_polynomial(p, delta_x=x_shift)
-r = translate_polynomial(p, delta_y=y_shift)
+q = translate_polynomial(p, delta_x=x_shift, delta_y=y_shift)
 
 # plot results
-plot_polys([p, q, r], a=-3, b=3)
+plot_polys([p, q], a=-10, b=10)
 
