@@ -1,8 +1,6 @@
 # polynomial_sums
 and recursively generated polynomials
 
-![Kinda Divided Differences](https://github.com/browlm13/polynomial_sums/blob/master/recursive_polynomial_construction.pdf)
-
   
   ![Kinda Divided Differences](https://github.com/browlm13/polynomial_sums/blob/master/Screen%20Shot%202019-01-23%20at%202.03.06%20AM.png)
   
